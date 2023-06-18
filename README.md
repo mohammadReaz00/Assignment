@@ -19,7 +19,7 @@ To clone this project repository, follow these steps:
 | Module Name | Link                                                                                 |
 | ----------- | ------------------------------------------------------------------------------------ |
 | Module 1    | [Link to Module 1](https://github.com/mohammadReaz00/Assignment/tree/main/01_Module) |
-| Module 2    | [Link to Module 2](https://github.com/mohammadReaz00/Assignment/blob/main/module2)   |
+| Module 2    | [Link to Module 2](https://github.com/mohammadReaz00/Assignment/tree/main/02_Module) |
 | Module 3    | [Link to Module 3](./module3)                                                        |
 | ...         | ...                                                                                  |
 
