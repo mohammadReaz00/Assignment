@@ -1,73 +1,75 @@
-const form = document.getElementById("myForm");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const passwordInput = document.getElementById("password");
-const confirmPasswordInput = document.getElementById("confirmPassword");
+// Get the form element
+var form = document.getElementById("myForm");
 
+// Get the error elements
+var nameError = document.getElementById("nameError");
+var emailError = document.getElementById("emailError");
+var passwordError = document.getElementById("passwordError");
+var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+// Define the regular expressions for validation
+var nameRegex = /^[A-Za-z]+$/;
+var emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+// Define the error messages for validation
+var nameErrorMessage = "Name cannot be empty and should contain only letters.";
+var emailErrorMessage = "Email should be a valid email address.";
+var passwordErrorMessage =
+  "Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit.";
+var confirmPasswordErrorMessage = "Confirm Password should match the Password field.";
+
+// Define a function to validate a field
+function validateField(field, regex, errorElement, errorMessage) {
+  // Get the field value
+  var value = field.value;
+  // Check if the value matches the regex
+  if (regex.test(value)) {
+    // If yes, clear the error message
+    errorElement.textContent = "";
+    return true;
+  } else {
+    // If no, display the error message
+    errorElement.textContent = errorMessage;
+    return false;
+  }
+}
+
+// Define a function to validate the confirm password field
+function validateConfirmPassword() {
+  // Get the password and confirm password values
+  var passwordValue = document.getElementById("password").value;
+  var confirmPasswordValue = document.getElementById("confirmPassword").value;
+  // Check if they match
+  if (passwordValue === confirmPasswordValue) {
+    // If yes, clear the error message
+    confirmPasswordError.textContent = "";
+    return true;
+  } else {
+    // If no, display the error message
+    confirmPasswordError.textContent = confirmPasswordErrorMessage;
+    return false;
+  }
+}
+
+// Add an event listener for form submission
 form.addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevent form submission
-
-  // Reset error messages
-  clearErrors();
-
-  // Validate form fields
-  let isValid = true;
-
-  if (!isValidName(nameInput.value)) {
-    showErrorMessage(nameInput, "Name should not be empty and should contain only letters.");
-    isValid = false;
-  }
-
-  if (!isValidEmail(emailInput.value)) {
-    showErrorMessage(emailInput, "Email should be a valid email address.");
-    isValid = false;
-  }
-
-  if (!isValidPassword(passwordInput.value)) {
-    showErrorMessage(
-      passwordInput,
-      "Password should have a minimum length of 8 characters and contain at least one uppercase letter, one lowercase letter, and one digit."
-    );
-    isValid = false;
-  }
-
-  if (!isValidConfirmPassword(confirmPasswordInput.value, passwordInput.value)) {
-    showErrorMessage(confirmPasswordInput, "Confirm Password should match the Password field.");
-    isValid = false;
-  }
-
-  if (isValid) {
-    // Form is valid, do something (e.g., submit the form)
+  // Prevent the default form submission behavior
+  event.preventDefault();
+  // Validate all the fields
+  var nameValid = validateField(document.getElementById("name"), nameRegex, nameError, nameErrorMessage);
+  var emailValid = validateField(document.getElementById("email"), emailRegex, emailError, emailErrorMessage);
+  var passwordValid = validateField(
+    document.getElementById("password"),
+    passwordRegex,
+    passwordError,
+    passwordErrorMessage
+  );
+  var confirmPasswordValid = validateConfirmPassword();
+  // Check if all the fields are valid
+  if (nameValid && emailValid && passwordValid && confirmPasswordValid) {
+    // If yes, submit the form data
     alert("Form submitted successfully!");
-    form.reset(); // Reset the form
+    form.reset();
   }
 });
-
-function isValidName(name) {
-  return /^[A-Za-z]+$/.test(name);
-}
-
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function isValidPassword(password) {
-  // Minimum length of 8 characters and contains at least one uppercase letter, one lowercase letter, and one digit
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password);
-}
-
-function isValidConfirmPassword(confirmPassword, password) {
-  return confirmPassword === password;
-}
-
-function showErrorMessage(inputElement, message) {
-  const errorElement = document.getElementById(inputElement.id + "Error");
-  errorElement.textContent = message;
-}
-
-function clearErrors() {
-  const errorElements = document.getElementsByClassName("error");
-  for (let i = 0; i < errorElements.length; i++) {
-    errorElements[i].textContent = "";
-  }
-}
