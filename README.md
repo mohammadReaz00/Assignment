@@ -21,6 +21,7 @@ To clone this project repository, follow these steps:
 | Module 1    | [Link to Module 1](https://github.com/mohammadReaz00/Assignment/tree/main/01_Module) |
 | Module 2    | [Link to Module 2](https://github.com/mohammadReaz00/Assignment/tree/main/02_Module) |
 | Module 3    | [Link to Module 3](https://github.com/mohammadReaz00/Assignment/tree/main/03_Module) |
+| Module 4    | [Link to Module 4](https://github.com/mohammadReaz00/Assignment/tree/main/04_Module) |
 | ...         | ...                                                                                  |
 
 In the table above, each module is listed along with its corresponding link. The link directs to the respective folder within the project where the module is located. As you create new modules in your project, add them to the table and provide the appropriate link.
