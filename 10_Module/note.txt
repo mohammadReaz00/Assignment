@@ -1,0 +1,9 @@
+In NEXTJS 13, the project directory structure comprises two main folders:
+
+1. Public Folder:
+In the context of Next.js, the "public" folder plays a role in serving static assets, such as images. These assets are accessible through a URL that originates from the root directory. By placing files within the "public" folder, you establish a base URL (/) reference point for your code to access these resources.
+
+2. SRC Folder:
+The "src" folder assumes a central role within the application's architecture. This directory houses the entire application logic and components. Notably, the "app" subfolder within "src" contains the core components of the application.
+
+This structured approach provides a clear separation of static assets from the dynamic application code, enhancing organization and maintainability.
